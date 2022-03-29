@@ -8,14 +8,22 @@ import java.util.Queue;
 import java.util.Scanner;
 
 public class Orders extends Menu {
-
-    Queue<String> myOrder = new LinkedList<>();
-
     Orders(ArrayList<String> items) {
         super(items);
     }
 
-    public String CreateOrder () {
+    public void PromptUserToOrder(Menu items) {
+        //User prompts
+        items.showMenu();
+        for ( String item : items ) {
+            System.out.println(item);
+        }
+        System.out.println("For "  + items.getMenuItems(0) + ", press 1. For " +  items.getMenuItems(1) + ", press 2. For " + items.getMenuItems(2) + ", press 3. After entering the number, hit enter.");
+
+    }
+
+    public ArrayList<String> CreateOrder () {
+        ArrayList<String> myOrder = null;
         //Scanning for input
         int choice = 0;
         Scanner input = new Scanner(System.in);
@@ -25,7 +33,9 @@ public class Orders extends Menu {
             choice = input.nextInt();
             //Handle choices
             if (choice == 1) {
-
+                String firstItem = menuItems.get(0);
+                myOrder.add(firstItem);
+                System.out.println(firstItem);
             }
             else if (choice == 2){
                 System.out.println("Barbecue Burger not implemented exception");
@@ -38,11 +48,11 @@ public class Orders extends Menu {
             }
             isOrdering = false;
         }
-        return "";
+        return myOrder;
     }
 
-    public Queue<String> ProcessOrder() {
-
-    }
+//    public Queue<String> ProcessOrder() {
+//
+//    }
 
 }

@@ -1,5 +1,4 @@
 package com.company;
-import java.util.Scanner;
 
 import java.util.ArrayList;
 
@@ -12,11 +11,12 @@ public class Main {
         menuItems.addItems("Hibachi");
         menuItems.addItems("Barbecue Burger");
         menuItems.addItems("Salad");
+        menuItems.addItems("Drinks");
 
 
-        //User prompts
-        System.out.println("What item would you like to order?\n" + menuItems);
-        System.out.println("For "  + menuItems.getMenuItems(0) + ", press 1. For " +  menuItems.getMenuItems(1) + ", press 2. For " + menuItems.getMenuItems(2) + ", press 3. After entering the number, hit enter.");
-
+        //Start Order
+        Orders myOrder = new Orders(new ArrayList<String>());
+        myOrder.PromptUserToOrder(menuItems);
+        myOrder.CreateOrder();
     }
 }

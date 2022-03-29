@@ -9,6 +9,10 @@ public class Menu {
 
     public ArrayList<String> menuItems = new ArrayList<String>();
 
+    public void showMenu() {
+        System.out.println("What items would you like to order?\n" + menuItems);
+    }
+
     public ArrayList<String> addItems(String items) {
         menuItems.add(items);
         return menuItems;
