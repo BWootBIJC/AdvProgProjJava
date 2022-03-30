@@ -1,10 +1,6 @@
 package com.company;
 
-import sun.awt.image.ImageWatched;
-
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Orders extends Menu {
@@ -15,11 +11,10 @@ public class Orders extends Menu {
     public void PromptUserToOrder(Menu items) {
         //User prompts
         items.showMenu();
-        for ( String item : items ) {
+        for ( Menu item : items ) {
             System.out.println(item);
         }
         System.out.println("For "  + items.getMenuItems(0) + ", press 1. For " +  items.getMenuItems(1) + ", press 2. For " + items.getMenuItems(2) + ", press 3. After entering the number, hit enter.");
-
     }
 
     public ArrayList<String> CreateOrder () {
@@ -51,6 +46,7 @@ public class Orders extends Menu {
         return myOrder;
     }
 
+    //TODO Implement Queuee that processes order
 //    public Queue<String> ProcessOrder() {
 //
 //    }
