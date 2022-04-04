@@ -1,7 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class Orders extends Menu {
     Orders(ArrayList<String> items) {
@@ -9,46 +8,58 @@ public class Orders extends Menu {
     }
 
     public void PromptUserToOrder(Menu items) {
-        //User prompts
-        items.showMenu();
-        for ( Menu item : items ) {
-            System.out.println(item);
-        }
-        System.out.println("For "  + items.getMenuItems(0) + ", press 1. For " +  items.getMenuItems(1) + ", press 2. For " + items.getMenuItems(2) + ", press 3. After entering the number, hit enter.");
+        items.ShowMenu();
     }
 
-    public ArrayList<String> CreateOrder () {
-        ArrayList<String> myOrder = null;
+    public ArrayList<String> CreateOrder() {
+        ArrayList<String> myOrder = new ArrayList<String>();
+
         //Scanning for input
         int choice = 0;
         Scanner input = new Scanner(System.in);
         boolean isOrdering = true;
-        while (isOrdering)
-        {
+        while (isOrdering) {
             choice = input.nextInt();
             //Handle choices
-            if (choice == 1) {
-                String firstItem = menuItems.get(0);
-                myOrder.add(firstItem);
-                System.out.println(firstItem);
+            if (choice == 0) {
+                myOrder.add("Pizza");
+                System.out.println("Anything else? Press 4 to finish.");
+            } else if (choice == 1) {
+                myOrder.add("Burger");
+                System.out.println("Anything else? Press 4 to finish.");
+            } else if (choice == 2) {
+                myOrder.add("Salad");
+                System.out.println("Anything else? Press 4 to finish.");
+            } else if (choice == 3) {
+                myOrder.add("Drinks");
+                System.out.println("Anything else? Press 4 to finish.");
+            } else{
+                isOrdering = false;
+                System.out.println("Order is being placed in the oven!");
             }
-            else if (choice == 2){
-                System.out.println("Barbecue Burger not implemented exception");
-            }
-            else if (choice == 3){
-                System.out.println("Salad not implemented exception");
-            }
-            else{
-                System.out.println("Handle exception");
-            }
-            isOrdering = false;
         }
+
+        ProcessOrder(myOrder);
+        System.out.println(myOrder);
         return myOrder;
     }
 
-    //TODO Implement Queuee that processes order
-//    public Queue<String> ProcessOrder() {
-//
-//    }
+    //TODO Implement Queue that processes order
+    public void ProcessOrder(ArrayList<String> myOrder) {
+        //Initialize waiting queue
+        Queue<ArrayList<String>> queue = new LinkedList<>();
+
+        //Add order to queue
+        queue.add(myOrder);
+
+        //Create timer for food prep
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+                System.out.println("Order is ready!");
+                queue.remove();
+            }
+        }, 5000L); // 300 is the delay in millis
+    }
 
 }

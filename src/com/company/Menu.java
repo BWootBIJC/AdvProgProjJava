@@ -9,16 +9,26 @@ public class Menu {
 
     public ArrayList<String> menuItems = new ArrayList<String>();
 
-    public void showMenu() {
+    public void ShowMenu() {
         System.out.println("What items would you like to order?\n" + menuItems);
+        for (int i = 0; i <= menuItems.size(); i++){
+            if(i <= menuItems.size() - 1) {
+                System.out.println("For " + menuItems.get(i) + ", press " + i);
+            }
+            else{
+                System.out.println("To finish ordering, press " + i);
+            }
+
+        }
+
     }
 
-    public ArrayList<String> addItems(String items) {
-        menuItems.add(items);
+    public ArrayList<String> AddItems(int index, String items) {
+        menuItems.add(index, items);
         return menuItems;
     }
 
-    public String getMenuItems(int index) {
+    public String GetMenuItems(int index) {
         return menuItems.get(index);
     }
 }
