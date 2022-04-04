@@ -44,7 +44,6 @@ public class Orders extends Menu {
         return myOrder;
     }
 
-    //TODO Implement Queue that processes order
     public void ProcessOrder(ArrayList<String> myOrder) {
         //Initialize waiting queue
         Queue<ArrayList<String>> queue = new LinkedList<>();
